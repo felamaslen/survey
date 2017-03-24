@@ -18,13 +18,6 @@ export const formNextStep = (reduction, form) => {
   // increment the current "step" of the form
   let newReduction = reduction.setIn(['appState', 'formStep'], form.step + 1);
 
-  // add form values from the current step
-  let formValues = newReduction.getIn(['appState', 'formValues']);
-  for (const prop in form.values) {
-    formValues = formValues.set(prop, form.values[prop]);
-  }
-  newReduction = newReduction.setIn(['appState', 'formValues'], formValues);
-
   // if we're at the last step already, submit the form
   if (form.step === FORM_NUM_STEPS - 1) {
     // set the form so it doesn't render, and initiate a side effect to submit the form
