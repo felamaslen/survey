@@ -29,6 +29,7 @@
     "gutil": "^1.6.4",
     "immutable": "^3.8.1",
     "morgan": "^1.8.1",
+    "path": "^0.12.7",
     "proxy-middleware": "^0.15.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
