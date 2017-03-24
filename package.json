@@ -1,0 +1,10 @@
+{
+  "name": "survey",
+  "version": "0.0.1",
+  "description": "A sample application to demonstrate how a mobile app could work",
+  "author": "Fela Maslen <felamaslen@gmail.com>",
+  "dependencies": {
+    "express": "^4.15.2"
+  },
+  "devDependencies": {}
+}
