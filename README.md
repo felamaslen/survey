@@ -7,7 +7,7 @@
 * `npm start` to run the web server
 * The app can then be accessed at `localhost:8080`
 
-Note: the app is not developed yet, and is just a skeleton.
+Note: the app is now functioning in terms of submitting a form, but not much else.
 
 ### Tools used:
 * Node.js with express for the web server
