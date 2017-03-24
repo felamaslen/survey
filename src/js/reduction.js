@@ -5,14 +5,19 @@ import { Record, List, fromJS } from 'immutable';
 export default new Record({
   appState: fromJS({
     formStep: 0, // goes to 1 when the second part is displayed
-    formValues: {
-      title: "",
-      name: "",
-      dob: "",
-      location: "",
-      datetime: "",
-      feedback: ""
-    },
+    formValues: [
+      // each object in this list corresponds to a separate form section
+      {
+        title: "",
+        name: "",
+        dob: ""
+      },
+      {
+        location: "",
+        datetime: "",
+        feedback: ""
+      }
+    ],
     formLoading: false,
     formSubmitted: false
   }),

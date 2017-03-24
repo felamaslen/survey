@@ -3,7 +3,7 @@
  */
 
 import React, { PropTypes } from 'react';
-import { Map as map } from 'immutable';
+import { List } from 'immutable';
 import classNames from 'classnames';
 
 import PureControllerView from './PureControllerView';
@@ -54,7 +54,7 @@ export class SurveyForm extends PureControllerView {
             <span>Title:</span>
             <span>
               <input ref="input_title" type="text" name="title"
-                value={this.props.formValues.get('title')}
+                value={this.props.formValues.getIn([step, 'title'])}
                 onChange={this.handleChange.bind(this, 'title')} />
             </span>
           </li>
@@ -62,7 +62,7 @@ export class SurveyForm extends PureControllerView {
             <span>Name:</span>
             <span>
               <input ref="input_name" type="text" name="name"
-                value={this.props.formValues.get('name')}
+                value={this.props.formValues.getIn([step, 'name'])}
                 onChange={this.handleChange.bind(this, 'name')} />
             </span>
           </li>
@@ -70,7 +70,7 @@ export class SurveyForm extends PureControllerView {
             <span>Date of Birth:</span>
             <span>
               <input ref="input_dob" type="date" name="dob"
-                value={this.props.formValues.get('dob')}
+                value={this.props.formValues.getIn([step, 'dob'])}
                 onChange={this.handleChange.bind(this, 'dob')} />
             </span>
           </li>
@@ -87,7 +87,7 @@ export class SurveyForm extends PureControllerView {
             <span>Current location:</span>
             <span>
               <input ref="input_location" type="text" name="location"
-                value={this.props.formValues.get('location')}
+                value={this.props.formValues.getIn([step, 'location'])}
                 onChange={this.handleChange.bind(this, 'location')} />
             </span>
           </li>
@@ -95,7 +95,7 @@ export class SurveyForm extends PureControllerView {
             <span>Current time:</span>
             <span>
               <input ref="input_datetime" type="datetime-local" name="datetime"
-                value={this.props.formValues.get('datetime')}
+                value={this.props.formValues.getIn([step, 'datetime'])}
                 onChange={this.handleChange.bind(this, 'datetime')} />
             </span>
           </li>
@@ -103,7 +103,7 @@ export class SurveyForm extends PureControllerView {
             <span>User feedback:</span>
             <span>
               <textarea ref="input_feedback" name="feedback"
-                value={this.props.formValues.get('feedback')}
+                value={this.props.formValues.getIn([step, 'feedback'])}
                 onChange={this.handleChange.bind(this, 'feedback')} />
             </span>
           </li>
@@ -135,6 +135,6 @@ export class SurveyForm extends PureControllerView {
 
 SurveyForm.propTypes = {
   formStep: PropTypes.number,
-  formValues: PropTypes.instanceOf(map)
+  formValues: PropTypes.instanceOf(List)
 };
 
