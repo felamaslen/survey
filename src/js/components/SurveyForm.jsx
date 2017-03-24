@@ -94,9 +94,9 @@ export class SurveyForm extends PureControllerView {
           <li>
             <span>Current time:</span>
             <span>
-              <input ref="input_date" type="datetime-local" name="time"
-                value={this.props.formValues.get('date')}
-                onChange={this.handleChange.bind(this, 'date')} />
+              <input ref="input_datetime" type="datetime-local" name="datetime"
+                value={this.props.formValues.get('datetime')}
+                onChange={this.handleChange.bind(this, 'datetime')} />
             </span>
           </li>
           <li>
