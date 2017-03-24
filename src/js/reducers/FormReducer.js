@@ -15,6 +15,21 @@ import {
 } from '../constants/effects';
 
 export const formNextStep = (reduction, form) => {
+  // very basic form validation - no empty items!
+  const formValid = reduction.getIn(['appState', 'formValues'])
+  .filter((section, step) => step === form.step)
+  .reduce((emptyCount, section) => {
+    const sectionEmptyCount = section.reduce((count, formItem) => {
+      return count + (formItem.length === 0 ? 1 : 0);
+    }, 0);
+    return emptyCount + sectionEmptyCount;
+  }, 0) === 0;
+
+  if (!formValid) {
+    alert("Please enter data.");
+    return reduction;
+  }
+
   // increment the current "step" of the form
   let newReduction = reduction.setIn(['appState', 'formStep'], form.step + 1);
 
@@ -39,6 +54,7 @@ export const formHandleResponse = (reduction, response) => {
 
 export const formInputChanged = (reduction, input) => {
   // update a form input with the latest value
-  return reduction.setIn(['appState', 'formValues', input.prop], input.value);
+  const step = reduction.getIn(['appState', 'formStep']);
+  return reduction.setIn(['appState', 'formValues', step, input.prop], input.value);
 }
 
