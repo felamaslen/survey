@@ -5,6 +5,8 @@ import { Dispatcher } from 'flux';
 // the global reducer decides what to do for each action
 import globalReducer from '../reducers/GlobalReducer';
 
+import { SurveyForm } from './SurveyForm.jsx';
+
 // actions defined for the component
 import {
 } from '../actions/AppActions';
@@ -48,9 +50,26 @@ export default class App extends Component {
   }
 
   render() {
+    let form = null;
+    let endPage = null;
+
+    if (this.state.reduction.getIn(['appState', 'formSubmitted'])) {
+      endPage = (
+        <div id="page-finished">
+          <h1>Thank you!</h1>
+        </div>
+      );
+    }
+    else {
+      form = <SurveyForm dispatcher={this.state.dispatcher}
+        formStep={this.state.reduction.getIn(['appState', 'formStep'])}
+        formValues={this.state.reduction.getIn(['appState', 'formValues'])} />
+    }
+
     return (
-      <div>
-        <p>Form will go here...</p>
+      <div id="main">
+        {form}
+        {endPage}
       </div>
     );
   }

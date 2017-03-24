@@ -4,7 +4,17 @@ import { Record, List, fromJS } from 'immutable';
 // and returned (modified) by reducers
 export default new Record({
   appState: fromJS({
-    formValues: {} // an example app property...
+    formStep: 0, // goes to 1 when the second part is displayed
+    formValues: {
+      title: "",
+      name: "",
+      dob: "",
+      location: "",
+      datetime: "",
+      feedback: ""
+    },
+    formLoading: false,
+    formSubmitted: false
   }),
   // side effects
   effects: List.of()
