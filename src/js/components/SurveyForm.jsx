@@ -53,9 +53,15 @@ export class SurveyForm extends PureControllerView {
           <li>
             <span className="label">Title:</span>
             <span className="input">
-              <input ref="input_title" type="text" name="title"
+              <select ref="input_title" type="text" name="title"
                 value={this.props.formValues.getIn([step, 'title'])}
-                onChange={this.handleChange.bind(this, 'title')} />
+                onChange={this.handleChange.bind(this, 'title')}>
+                <option value="Mr">Mr</option>
+                <option value="Mrs">Mrs</option>
+                <option value="Ms">Ms</option>
+                <option value="Miss">Miss</option>
+                <option value="Dr">Dr</option>
+              </select>
             </span>
           </li>
           <li>

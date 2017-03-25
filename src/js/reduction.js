@@ -8,7 +8,7 @@ export default new Record({
     formValues: [
       // each object in this list corresponds to a separate form section
       {
-        title: '',
+        title: 'Mr',
         name: '',
         dob: ''
       },
