@@ -8,14 +8,14 @@ export default new Record({
     formValues: [
       // each object in this list corresponds to a separate form section
       {
-        title: "",
-        name: "",
-        dob: ""
+        title: '',
+        name: '',
+        dob: ''
       },
       {
-        location: "",
-        datetime: "",
-        feedback: ""
+        location: '',
+        datetime: '',
+        feedback: ''
       }
     ],
     formLoading: false,
