@@ -26,7 +26,7 @@ export const formNextStep = (reduction, form) => {
   }, 0) === 0;
 
   if (!formValid) {
-    alert("Please enter data.");
+    alert('Please enter data.');
     return reduction;
   }
 
