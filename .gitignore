@@ -2,3 +2,4 @@ node_modules
 npm-debug.log
 src/html/css/*.css
 src/html/*.js
+src/html/*.js.map
