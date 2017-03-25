@@ -47,10 +47,16 @@ export class SurveyForm extends PureControllerView {
       status: true,
       hidden: this.props.formLoading || this.props.formSubmitted
     });
+    const progressStyle = {
+      width: (100 * this.props.formStep / FORM_NUM_STEPS) + '%'
+    };
     const status = (
-      <span className={statusClasses}>
-        Step {this.props.formStep+1} of {FORM_NUM_STEPS}
-      </span>
+      <div className={statusClasses}>
+        <span className="progress" style={progressStyle}></span>
+        <span className="text">
+          Step {this.props.formStep+1} of {FORM_NUM_STEPS}
+        </span>
+      </div>
     );
 
     // thank you message when form has been submitted
