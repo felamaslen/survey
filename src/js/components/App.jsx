@@ -56,7 +56,10 @@ export default class App extends Component {
     if (this.state.reduction.getIn(['appState', 'formSubmitted'])) {
       endPage = (
         <div id="page-finished">
-          <h1>Thank you!</h1>
+          <h2>Thank you!</h2>
+          <p>
+            Your response has been submitted.
+          </p>
         </div>
       );
     }
@@ -68,6 +71,9 @@ export default class App extends Component {
 
     return (
       <div id="main">
+        <div id="header">
+          <h1>Survey Form</h1>
+        </div>
         {form}
         {endPage}
       </div>
