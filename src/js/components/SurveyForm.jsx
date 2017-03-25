@@ -16,6 +16,7 @@ import {
 import {
   formNextClicked,
   formInputChanged,
+  formResetClicked
 } from '../actions/FormActions';
 
 export class SurveyForm extends PureControllerView {
@@ -70,6 +71,9 @@ export class SurveyForm extends PureControllerView {
         <p>
           Your response has been submitted.
         </p>
+        <p>
+          <button onClick={this.resetForm.bind(this)}>New response</button>
+        </p>
       </div>
     );
 
@@ -84,6 +88,10 @@ export class SurveyForm extends PureControllerView {
     );
 
     return form;
+  }
+
+  resetForm() {
+    this.dispatchAction(formResetClicked());
   }
 
   renderFormPart(step) {

@@ -2,12 +2,13 @@
  * Carries out actions for the Form component
  */
 
-import { } from 'immutable';
+import { fromJS } from 'immutable';
 
 import buildMessage from '../messageBuilder';
 
 import {
-  FORM_NUM_STEPS
+  FORM_NUM_STEPS,
+  formDefaultValues
 } from '../config';
 
 import {
@@ -44,6 +45,13 @@ export const formNextStep = (reduction, form) => {
   return newReduction;
 };
 
+/* Resets the form to the original state for another response */
+export const formReset = (reduction, form) => {
+  return reduction.setIn(['appState', 'formStep'], 0)
+  .setIn(['appState', 'formSubmitted'], false)
+  .setIn(['appState', 'formValues'], fromJS(formDefaultValues()));
+}
+
 const submitForm = reduction => {
   // set the form so it doesn't render, and initiate a side effect to submit the form
   return reduction.setIn(['appState', 'formStep'], -1)
@@ -61,7 +69,7 @@ export const formHandleResponse = (reduction, response) => {
 };
 
 /* This is run when inputting data to the form, to update the form values. */
-export const formInputChanged = (reduction, input) => {
+export const formUpdateValues = (reduction, input) => {
   // update a form input with the latest value
   const step = reduction.getIn(['appState', 'formStep']);
   return reduction.setIn(['appState', 'formValues', step, input.prop], input.value);

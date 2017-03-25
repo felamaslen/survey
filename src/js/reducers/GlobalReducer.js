@@ -6,13 +6,15 @@
 import {
   FORM_NEXT_CLICKED,
   FORM_RESPONSE_GOT,
-  FORM_INPUT_CHANGED
+  FORM_INPUT_CHANGED,
+  FORM_RESET_CLICKED
 } from '../constants/actions';
 
 import {
   formNextStep,
   formHandleResponse,
-  formInputChanged
+  formUpdateValues,
+  formReset
 } from './FormReducer';
 
 export default (reduction, action) => {
@@ -22,7 +24,9 @@ export default (reduction, action) => {
   case FORM_RESPONSE_GOT:
     return formHandleResponse(reduction, action.payload);
   case FORM_INPUT_CHANGED:
-    return formInputChanged(reduction, action.payload);
+    return formUpdateValues(reduction, action.payload);
+  case FORM_RESET_CLICKED:
+    return formReset(reduction);
 
   default:
     // By default, the reduction is simply returned unchanged.
