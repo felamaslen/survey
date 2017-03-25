@@ -1,5 +1,9 @@
 import { Record, List, fromJS } from 'immutable';
 
+import {
+  FORM_TITLES
+} from './config';
+
 // the state of the app (reduction) is stored as an immutable object,
 // and returned (modified) by reducers
 export default new Record({
@@ -8,7 +12,7 @@ export default new Record({
     formValues: [
       // each object in this list corresponds to a separate form section
       {
-        title: 'Mr',
+        title: FORM_TITLES[0],
         name: '',
         dob: ''
       },

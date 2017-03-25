@@ -9,7 +9,8 @@ import classNames from 'classnames';
 import PureControllerView from './PureControllerView';
 
 import {
-  FORM_NUM_STEPS
+  FORM_NUM_STEPS,
+  FORM_TITLES
 } from '../config';
 
 import {
@@ -97,11 +98,9 @@ export class SurveyForm extends PureControllerView {
               <select ref="input_title" type="text" name="title"
                 value={this.props.formValues.getIn([step, 'title'])}
                 onChange={this.handleChange.bind(this, 'title')}>
-                <option value="Mr">Mr</option>
-                <option value="Mrs">Mrs</option>
-                <option value="Ms">Ms</option>
-                <option value="Miss">Miss</option>
-                <option value="Dr">Dr</option>
+                {FORM_TITLES.map((title, key) => (
+                  <option key={key} value={title}>{title}</option>
+                ))}
               </select>
             </span>
           </li>
