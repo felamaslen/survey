@@ -17,9 +17,9 @@ export default app => {
   apiRouter.post('/submit_survey', (req, res) => {
     // this doesn't really do anything - the instructions were to log the form details
     // to the console and do nothing else.
-    console.log("Form submitted:", req.body);
+    console.log('Form submitted:', req.body);
     // empty response
-    res.json({error: false, response: "Form submitted."});
+    res.json({error: false, response: 'Form submitted.'});
   });
 
   // body parser is used to get POST/URL parameters
