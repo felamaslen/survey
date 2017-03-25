@@ -1,11 +1,13 @@
+/**
+ * This is run whenever an action is called by a view, and decides which
+ * reducer to run based on the action given.
+ */
+
 import {
   FORM_NEXT_CLICKED,
   FORM_RESPONSE_GOT,
   FORM_INPUT_CHANGED
 } from '../constants/actions';
-
-import {
-} from './AppReducer';
 
 import {
   formNextStep,
@@ -23,6 +25,7 @@ export default (reduction, action) => {
     return formInputChanged(reduction, action.payload);
 
   default:
+    // By default, the reduction is simply returned unchanged.
     return reduction;
   }
 }

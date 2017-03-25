@@ -14,6 +14,9 @@ import {
   FORM_SUBMIT_API_CALL
 } from '../constants/effects';
 
+/* This reducer is run when either a "next" or "submit" button is pressed.
+ * If the form is already on the last step, it will cause it to be submitted.
+ */
 export const formNextStep = (reduction, form) => {
   // very basic form validation - no empty items!
   const formValid = reduction.getIn(['appState', 'formValues'])
@@ -50,12 +53,14 @@ const submitForm = reduction => {
   ));
 }
 
+/* This is run via a side effect, when a response has been given by the API. */
 export const formHandleResponse = (reduction, response) => {
   // mark the form as submitted, so a thank you message can be displayed
   return reduction.setIn(['appState', 'formLoading'], false)
   .setIn(['appState', 'formSubmitted'], true);
 };
 
+/* This is run when inputting data to the form, to update the form values. */
 export const formInputChanged = (reduction, input) => {
   // update a form input with the latest value
   const step = reduction.getIn(['appState', 'formStep']);
