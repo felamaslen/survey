@@ -1,10 +1,84 @@
+/* general styles */
 body {
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
 }
 
+input, textarea {
+  width: 100%;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  padding: 0.2em 0.3em;
+  font-size: inherit;
+  font-family: inherit;
+}
+input {
+  height: 3em;
+}
+
+button {
+  font-size: 1em;
+  padding: 0.5em 0.7em;
+  background-color: #1b9af7;
+  border-color: #1b9af7;
+  color: white;
+  font-weight: 300;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  appearance: none;
+  border: none;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  transition: all .3s;
+  -webkit-transition: all .3s;
+
+  &:hover, &:focus {
+    background-color: #4cb0f9;
+    border-color: #4cb0f9;
+  }
+  &:active {
+    background-color: #2798eb;
+    border-color: #2798eb;
+    color: #0880d7;
+    text-shadow: 01px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// each section of the form is a .form-part
 .form-part {
   display: none;
   &.active {
     display: block;
   }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin: 1em 0;
+    }
+  }
+
+  .label, .input {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5%;
+  }
+
+  .label {
+    width: 30%;
+    text-align: left;
+  }
+  .input {
+    width: 50%;
+    text-align: right;
+  }
 }
+

@@ -51,24 +51,24 @@ export class SurveyForm extends PureControllerView {
       return (
         <ul>
           <li>
-            <span>Title:</span>
-            <span>
+            <span className="label">Title:</span>
+            <span className="input">
               <input ref="input_title" type="text" name="title"
                 value={this.props.formValues.getIn([step, 'title'])}
                 onChange={this.handleChange.bind(this, 'title')} />
             </span>
           </li>
           <li>
-            <span>Name:</span>
-            <span>
+            <span className="label">Name:</span>
+            <span className="input">
               <input ref="input_name" type="text" name="name"
                 value={this.props.formValues.getIn([step, 'name'])}
                 onChange={this.handleChange.bind(this, 'name')} />
             </span>
           </li>
           <li>
-            <span>Date of Birth:</span>
-            <span>
+            <span className="label">Date of Birth:</span>
+            <span className="input">
               <input ref="input_dob" type="date" name="dob"
                 value={this.props.formValues.getIn([step, 'dob'])}
                 onChange={this.handleChange.bind(this, 'dob')} />
@@ -82,27 +82,27 @@ export class SurveyForm extends PureControllerView {
 
     case 1:
       return (
-        <ul>
+        <ul className="form-section">
           <li>
-            <span>Current location:</span>
-            <span>
+            <span className="label">Current location:</span>
+            <span className="input">
               <input ref="input_location" type="text" name="location"
                 value={this.props.formValues.getIn([step, 'location'])}
                 onChange={this.handleChange.bind(this, 'location')} />
             </span>
           </li>
           <li>
-            <span>Current time:</span>
-            <span>
+            <span className="label">Current time:</span>
+            <span className="input">
               <input ref="input_datetime" type="datetime-local" name="datetime"
                 value={this.props.formValues.getIn([step, 'datetime'])}
                 onChange={this.handleChange.bind(this, 'datetime')} />
             </span>
           </li>
           <li>
-            <span>User feedback:</span>
-            <span>
-              <textarea ref="input_feedback" name="feedback"
+            <span className="label">User feedback:</span>
+            <span className="input">
+              <textarea rows="4" ref="input_feedback" name="feedback"
                 value={this.props.formValues.getIn([step, 'feedback'])}
                 onChange={this.handleChange.bind(this, 'feedback')} />
             </span>
