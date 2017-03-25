@@ -4,6 +4,11 @@ import {
   FORM_TITLES
 } from './config';
 
+const getCurrentDateTime = () => {
+  const isoString = new Date().toISOString();
+  return isoString.substring(0, isoString.indexOf('.'));
+}
+
 // the state of the app (reduction) is stored as an immutable object,
 // and returned (modified) by reducers
 export default new Record({
@@ -18,7 +23,7 @@ export default new Record({
       },
       {
         location: '',
-        datetime: '',
+        datetime: getCurrentDateTime(),
         feedback: ''
       }
     ],
