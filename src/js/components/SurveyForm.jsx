@@ -35,6 +35,7 @@ export class SurveyForm extends PureControllerView {
 
     const form = (
       <div id="main-form">
+        <span className="status">Step {this.props.formStep+1} of {FORM_NUM_STEPS}</span>
         {parts}
       </div>
     );
