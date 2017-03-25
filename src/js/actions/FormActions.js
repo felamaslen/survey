@@ -1,3 +1,7 @@
+/**
+ * Defines actions for use by the Form component
+ */
+
 import buildMessage from '../messageBuilder';
 
 import {

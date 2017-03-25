@@ -1,3 +1,8 @@
+/**
+ * Main App component initates the global dispatcher, sets the app state
+ * and renders other components
+ */
+
 import { List } from 'immutable';
 import React, { Component } from 'react';
 import { Dispatcher } from 'flux';
@@ -7,10 +12,6 @@ import globalReducer from '../reducers/GlobalReducer';
 
 import { SurveyForm } from './SurveyForm.jsx';
 import { Header } from './Header.jsx';
-
-// actions defined for the component
-import {
-} from '../actions/AppActions';
 
 // side-effect handlers
 import effectHandler from '../effects-handlers/EffectHandler';

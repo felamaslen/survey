@@ -33,6 +33,7 @@ export class SurveyForm extends PureControllerView {
       );
     });
 
+    // loading spinner for when the form is being submitted
     const loadingClasses = classNames({
       loading: true,
       hidden: !this.props.formLoading
@@ -41,6 +42,7 @@ export class SurveyForm extends PureControllerView {
       <div className={loadingClasses}>Loading...</div>
     );
 
+    // status bar showing which part of the form we're at
     const statusClasses = classNames({
       status: true,
       hidden: this.props.formLoading || this.props.formSubmitted
@@ -51,6 +53,7 @@ export class SurveyForm extends PureControllerView {
       </span>
     );
 
+    // thank you message when form has been submitted
     const thankyouClasses = classNames({
       hidden: !this.props.formSubmitted
     });
@@ -63,6 +66,7 @@ export class SurveyForm extends PureControllerView {
       </div>
     );
 
+    // combine all the different sections together
     const form = (
       <div id="main-form">
         {status}
@@ -76,9 +80,7 @@ export class SurveyForm extends PureControllerView {
   }
 
   renderFormPart(step) {
-    // render part of the form, shown/hidden based on the current form step
-    // if the form step has been incremented by the submit button,
-    // the form will not be rendered
+    /* Render part of the form, based on which step we're at. */
     switch (step) {
     case 0:
       return (
