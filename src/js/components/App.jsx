@@ -6,6 +6,7 @@ import { Dispatcher } from 'flux';
 import globalReducer from '../reducers/GlobalReducer';
 
 import { SurveyForm } from './SurveyForm.jsx';
+import { Header } from './Header.jsx';
 
 // actions defined for the component
 import {
@@ -71,9 +72,7 @@ export default class App extends Component {
 
     return (
       <div id="main">
-        <div id="header">
-          <h1>Survey Form</h1>
-        </div>
+        <Header />
         {form}
         {endPage}
       </div>
