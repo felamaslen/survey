@@ -16,8 +16,8 @@ import url from 'url';
 import webpackConfigDev from './webpack/webpack.development.config';
 import webpackConfig from './webpack/webpack.staging.config';
 
-import backend from './src/srv';
-import { PORT_PROD, PORT_DEVSERVER } from './src/srv/config';
+import backend from './src/js/srv';
+import { PORT_PROD, PORT_DEVSERVER } from './src/js/srv/config';
 
 // use eslint for consistent code
 gulp.task('lint', () => {
