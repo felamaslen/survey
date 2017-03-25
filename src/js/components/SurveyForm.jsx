@@ -47,7 +47,7 @@ export class SurveyForm extends PureControllerView {
     // status bar showing which part of the form we're at
     const statusClasses = classNames({
       status: true,
-      hidden: this.props.formLoading || this.props.formSubmitted
+      hidden: this.props.formSubmitted
     });
     const progressStyle = {
       width: (100 * this.props.formStep / FORM_NUM_STEPS) + '%'
@@ -55,9 +55,7 @@ export class SurveyForm extends PureControllerView {
     const status = (
       <div className={statusClasses}>
         <span className="progress" style={progressStyle}></span>
-        <span className="text">
-          Step {this.props.formStep+1} of {FORM_NUM_STEPS}
-        </span>
+        <span className="text">{this.props.formStatusText}</span>
       </div>
     );
 
@@ -191,6 +189,7 @@ SurveyForm.propTypes = {
   formLoading: PropTypes.bool,
   formSubmitted: PropTypes.bool,
   formStep: PropTypes.number,
+  formStatusText: PropTypes.string,
   formValues: PropTypes.instanceOf(List)
 };
 
