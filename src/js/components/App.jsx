@@ -51,30 +51,16 @@ export default class App extends Component {
   }
 
   render() {
-    let form = null;
-    let endPage = null;
-
-    if (this.state.reduction.getIn(['appState', 'formSubmitted'])) {
-      endPage = (
-        <div id="page-finished">
-          <h2>Thank you!</h2>
-          <p>
-            Your response has been submitted.
-          </p>
-        </div>
-      );
-    }
-    else {
-      form = <SurveyForm dispatcher={this.state.dispatcher}
-        formStep={this.state.reduction.getIn(['appState', 'formStep'])}
-        formValues={this.state.reduction.getIn(['appState', 'formValues'])} />
-    }
+    const form = <SurveyForm dispatcher={this.state.dispatcher}
+      formStep={this.state.reduction.getIn(['appState', 'formStep'])}
+      formValues={this.state.reduction.getIn(['appState', 'formValues'])}
+      formLoading={this.state.reduction.getIn(['appState', 'formLoading'])}
+      formSubmitted={this.state.reduction.getIn(['appState', 'formSubmitted'])} />
 
     return (
       <div id="main">
         <Header />
         {form}
-        {endPage}
       </div>
     );
   }

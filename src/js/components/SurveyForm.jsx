@@ -22,8 +22,8 @@ export class SurveyForm extends PureControllerView {
     // render each part of the form (2 parts)
     const parts = Array.apply(null, { length: FORM_NUM_STEPS }).map((_, step) => {
       const className = classNames({
-        'form-part': true,
-        'active': step === this.props.formStep
+        section: true,
+        hidden: step !== this.props.formStep
       });
 
       return (
@@ -33,10 +33,42 @@ export class SurveyForm extends PureControllerView {
       );
     });
 
+    const loadingClasses = classNames({
+      loading: true,
+      hidden: !this.props.formLoading
+    });
+    const loading = (
+      <div className={loadingClasses}>Loading...</div>
+    );
+
+    const statusClasses = classNames({
+      status: true,
+      hidden: this.props.formLoading || this.props.formSubmitted
+    });
+    const status = (
+      <span className={statusClasses}>
+        Step {this.props.formStep+1} of {FORM_NUM_STEPS}
+      </span>
+    );
+
+    const thankyouClasses = classNames({
+      hidden: !this.props.formSubmitted
+    });
+    const thankyou = (
+      <div id="thankyou" className={thankyouClasses}>
+        <h2>Thank you!</h2>
+        <p>
+          Your response has been submitted.
+        </p>
+      </div>
+    );
+
     const form = (
       <div id="main-form">
-        <span className="status">Step {this.props.formStep+1} of {FORM_NUM_STEPS}</span>
+        {status}
         {parts}
+        {loading}
+        {thankyou}
       </div>
     );
 
@@ -141,6 +173,8 @@ export class SurveyForm extends PureControllerView {
 }
 
 SurveyForm.propTypes = {
+  formLoading: PropTypes.bool,
+  formSubmitted: PropTypes.bool,
   formStep: PropTypes.number,
   formValues: PropTypes.instanceOf(List)
 };
