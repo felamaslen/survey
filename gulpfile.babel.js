@@ -1,5 +1,3 @@
-'use strict';
-
 import WebpackDevServer from 'webpack-dev-server';
 import webpack from 'webpack';
 import gulp from 'gulp';
@@ -23,7 +21,7 @@ import { PORT_PROD, PORT_DEVSERVER } from './src/js/srv/config';
 gulp.task('lint', () => {
   return gulp.src('src/js/**')
   .pipe(eslint({
-    "plugins": ["react"]
+    'plugins': ['react']
   }))
   .pipe(eslint.format())
   .pipe(eslint.failOnError());
