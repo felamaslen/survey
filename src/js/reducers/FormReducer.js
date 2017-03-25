@@ -47,6 +47,14 @@ export const formNextStep = (reduction, form) => {
   return newReduction;
 };
 
+const submitForm = reduction => {
+  // set the form so it doesn't render, and initiate a side effect to submit the form
+  return reduction.setIn(['appState', 'formLoading'], true)
+  .set('effects', reduction.get('effects').push(
+    buildMessage(FORM_SUBMIT_API_CALL, reduction.getIn(['appState', 'formValues']))
+  ));
+};
+
 /* Resets the form to the original state for another response */
 export const formReset = (reduction, form) => {
   return reduction.setIn(['appState', 'formStep'], 0)
@@ -54,15 +62,7 @@ export const formReset = (reduction, form) => {
   .setIn(['appState', 'formValues'], fromJS(formDefaultValues()))
   .setIn(['appState', 'formLoading'], false)
   .setIn(['appState', 'formStatusText'], formGetStatus(0));
-}
-
-const submitForm = reduction => {
-  // set the form so it doesn't render, and initiate a side effect to submit the form
-  return reduction.setIn(['appState', 'formLoading'], true)
-  .set('effects', reduction.get('effects').push(
-    buildMessage(FORM_SUBMIT_API_CALL, reduction.getIn(['appState', 'formValues']))
-  ));
-}
+};
 
 /* This is run via a side effect, when a response has been given by the API. */
 export const formHandleResponse = (reduction, response) => {
@@ -76,5 +76,5 @@ export const formUpdateValues = (reduction, input) => {
   // update a form input with the latest value
   const step = reduction.getIn(['appState', 'formStep']);
   return reduction.setIn(['appState', 'formValues', step, input.prop], input.value);
-}
+};
 

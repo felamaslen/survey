@@ -1,4 +1,4 @@
-/* Client app constant parameters */
+/* Client app constant (ish) parameters */
 
 // there are two form sections
 export const FORM_NUM_STEPS = 2;
