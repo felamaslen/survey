@@ -1,7 +1,8 @@
 import { Record, List, fromJS } from 'immutable';
 
 import {
-  formDefaultValues
+  formDefaultValues,
+  formGetStatus
 } from './config';
 
 // the state of the app (reduction) is stored as an immutable object,
@@ -11,7 +12,8 @@ export default new Record({
     formStep: 0, // goes to 1 when the second part is displayed
     formValues: formDefaultValues(),
     formLoading: false,
-    formSubmitted: false
+    formSubmitted: false,
+    formStatusText: formGetStatus(0)
   }),
   // side effects
   effects: List.of()

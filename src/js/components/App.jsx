@@ -56,7 +56,8 @@ export default class App extends Component {
       formStep={this.state.reduction.getIn(['appState', 'formStep'])}
       formValues={this.state.reduction.getIn(['appState', 'formValues'])}
       formLoading={this.state.reduction.getIn(['appState', 'formLoading'])}
-      formSubmitted={this.state.reduction.getIn(['appState', 'formSubmitted'])} />
+      formSubmitted={this.state.reduction.getIn(['appState', 'formSubmitted'])}
+      formStatusText={this.state.reduction.getIn(['appState', 'formStatusText'])} />
 
     return (
       <div id="main">

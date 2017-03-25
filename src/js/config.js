@@ -5,6 +5,15 @@ export const FORM_NUM_STEPS = 2;
 
 export const FORM_TITLES = ['', 'Mr', 'Mrs', 'Miss', 'Ms', 'Dr'];
 
+// decides what to display on the status bar
+export const formGetStatus = step => {
+  if (step < FORM_NUM_STEPS) {
+    return `Step ${step + 1} of ${FORM_NUM_STEPS}`;
+  }
+
+  return 'Submitting form';
+}
+
 const getCurrentDateTime = () => {
   const isoString = new Date().toISOString();
   return isoString.substring(0, isoString.lastIndexOf(':'));
