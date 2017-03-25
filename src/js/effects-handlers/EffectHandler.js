@@ -12,7 +12,8 @@ import {
 } from '../constants/effects';
 
 import {
-  formResponseGot
+  formResponseGot,
+  formResetClicked
 } from '../actions/FormActions';
 
 export default buildEffectHandler({
@@ -25,7 +26,10 @@ export default buildEffectHandler({
     axios.post('api/submit_survey', formValues.toJS()).then(
       response => dispatcher.dispatch(formResponseGot({ response }))
     ).catch(
-      error => console.error('Error submitting form', error)
+      error => {
+        console.error('Error submitting form', error);
+        dispatcher.dispatch(formResetClicked());
+      }
     );
   }
 });
