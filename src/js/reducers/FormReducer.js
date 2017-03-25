@@ -51,7 +51,9 @@ export const formNextStep = (reduction, form) => {
 export const formReset = (reduction, form) => {
   return reduction.setIn(['appState', 'formStep'], 0)
   .setIn(['appState', 'formSubmitted'], false)
-  .setIn(['appState', 'formValues'], fromJS(formDefaultValues()));
+  .setIn(['appState', 'formValues'], fromJS(formDefaultValues()))
+  .setIn(['appState', 'formLoading'], false)
+  .setIn(['appState', 'formStatusText'], formGetStatus(0));
 }
 
 const submitForm = reduction => {
