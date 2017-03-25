@@ -6,7 +6,7 @@ import {
 
 const getCurrentDateTime = () => {
   const isoString = new Date().toISOString();
-  return isoString.substring(0, isoString.indexOf('.'));
+  return isoString.substring(0, isoString.lastIndexOf(':'));
 }
 
 // the state of the app (reduction) is stored as an immutable object,
