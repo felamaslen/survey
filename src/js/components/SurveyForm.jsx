@@ -100,9 +100,12 @@ export class SurveyForm extends PureControllerView {
         <ul>
           <li>
             <span className="label">Title:</span>
-            <span className="input">
+            <span className={classNames({
+              input: true,
+              error: this.props.formValues.getIn([step, 'title', 'error'])
+            })}>
               <select ref="input_title" type="text" name="title"
-                value={this.props.formValues.getIn([step, 'title'])}
+                value={this.props.formValues.getIn([step, 'title', 'value'])}
                 onChange={this.handleChange.bind(this, 'title')}>
                 {FORM_TITLES.map((title, key) => (
                   <option key={key} value={title}>{title}</option>
@@ -112,17 +115,23 @@ export class SurveyForm extends PureControllerView {
           </li>
           <li>
             <span className="label">Name:</span>
-            <span className="input">
+            <span className={classNames({
+              input: true,
+              error: this.props.formValues.getIn([step, 'name', 'error'])
+            })}>
               <input ref="input_name" type="text" name="name"
-                value={this.props.formValues.getIn([step, 'name'])}
+                value={this.props.formValues.getIn([step, 'name', 'value'])}
                 onChange={this.handleChange.bind(this, 'name')} />
             </span>
           </li>
           <li>
             <span className="label">Date of Birth:</span>
-            <span className="input">
+            <span className={classNames({
+              input: true,
+              error: this.props.formValues.getIn([step, 'dob', 'error'])
+            })}>
               <input ref="input_dob" type="date" name="dob"
-                value={this.props.formValues.getIn([step, 'dob'])}
+                value={this.props.formValues.getIn([step, 'dob', 'value'])}
                 onChange={this.handleChange.bind(this, 'dob')} />
             </span>
           </li>
@@ -137,25 +146,34 @@ export class SurveyForm extends PureControllerView {
         <ul className="form-section">
           <li>
             <span className="label">Current location:</span>
-            <span className="input">
+            <span className={classNames({
+              input: true,
+              error: this.props.formValues.getIn([step, 'location', 'error'])
+            })}>
               <input ref="input_location" type="text" name="location"
-                value={this.props.formValues.getIn([step, 'location'])}
+                value={this.props.formValues.getIn([step, 'location', 'value'])}
                 onChange={this.handleChange.bind(this, 'location')} />
             </span>
           </li>
           <li>
             <span className="label">Current time:</span>
-            <span className="input">
+            <span className={classNames({
+              input: true,
+              error: this.props.formValues.getIn([step, 'datetime', 'error'])
+            })}>
               <input ref="input_datetime" type="datetime-local" name="datetime"
-                value={this.props.formValues.getIn([step, 'datetime'])}
+                value={this.props.formValues.getIn([step, 'datetime', 'value'])}
                 onChange={this.handleChange.bind(this, 'datetime')} />
             </span>
           </li>
           <li>
             <span className="label">User feedback:</span>
-            <span className="input">
+            <span className={classNames({
+              input: true,
+              error: this.props.formValues.getIn([step, 'feedback', 'error'])
+            })}>
               <textarea rows="4" ref="input_feedback" name="feedback"
-                value={this.props.formValues.getIn([step, 'feedback'])}
+                value={this.props.formValues.getIn([step, 'feedback', 'value'])}
                 onChange={this.handleChange.bind(this, 'feedback')} />
             </span>
           </li>
