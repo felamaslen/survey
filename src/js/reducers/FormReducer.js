@@ -2,7 +2,7 @@
  * Carries out actions for the Form component
  */
 
-import { fromJS } from 'immutable';
+import { Map as map, fromJS } from 'immutable';
 
 import buildMessage from '../messageBuilder';
 
@@ -20,23 +20,31 @@ import {
  * If the form is already on the last step, it will cause it to be submitted.
  */
 export const formNextStep = (reduction, form) => {
-  // very basic form validation - no empty items!
-  const formValid = reduction.getIn(['appState', 'formValues'])
-  .filter((section, step) => step === form.step)
-  .reduce((emptyCount, section) => {
-    const sectionEmptyCount = section.reduce((count, formItem) => {
-      return count + (formItem.length === 0 ? 1 : 0);
-    }, 0);
-    return emptyCount + sectionEmptyCount;
-  }, 0) === 0;
+  let newReduction = reduction;
 
-  if (!formValid) {
-    alert('Please enter data.');
-    return reduction;
+  // first validate the current section of the form
+  const formCurrentSection = reduction.getIn(['appState', 'formValues', form.step]);
+
+  let formCurrentSectionValid = true;
+  formCurrentSection.forEach((section, key) => {
+    const valid = section.get('valid')(section.get('value'));
+
+    newReduction = newReduction.setIn(
+      ['appState', 'formValues', form.step, key, 'error'], !valid
+    );
+
+    if (!valid) {
+      formCurrentSectionValid = false;
+    }
+  });
+
+  if (!formCurrentSectionValid) {
+    // don't go to the next step if the current step hasn't been filled correctly
+    return newReduction;
   }
 
   // increment the current "step" of the form
-  let newReduction = reduction.setIn(['appState', 'formStep'], form.step + 1)
+  newReduction = newReduction.setIn(['appState', 'formStep'], form.step + 1)
   .setIn(['appState', 'formStatusText'], formGetStatus(form.step + 1));
 
   // if we're at the last step already, submit the form
@@ -48,10 +56,16 @@ export const formNextStep = (reduction, form) => {
 };
 
 const submitForm = reduction => {
-  // set the form so it doesn't render, and initiate a side effect to submit the form
+  // set the form to render a loading message, and initiate a side effect to submit the form
+  const formValuesPost = reduction.getIn(['appState', 'formValues']).map(section => {
+    return section.map((input, name) => {
+      return map([ [ name, input.get('value') ] ]);
+    }).flatten();
+  });
+
   return reduction.setIn(['appState', 'formLoading'], true)
   .set('effects', reduction.get('effects').push(
-    buildMessage(FORM_SUBMIT_API_CALL, reduction.getIn(['appState', 'formValues']))
+    buildMessage(FORM_SUBMIT_API_CALL, formValuesPost)
   ));
 };
 
@@ -75,6 +89,6 @@ export const formHandleResponse = (reduction, response) => {
 export const formUpdateValues = (reduction, input) => {
   // update a form input with the latest value
   const step = reduction.getIn(['appState', 'formStep']);
-  return reduction.setIn(['appState', 'formValues', step, input.prop], input.value);
+  return reduction.setIn(['appState', 'formValues', step, input.prop, 'value'], input.value);
 };
 
