@@ -7,6 +7,10 @@
 * `npm start` to run the web server
 * The app can then be accessed at `localhost:8080`
 
+Note: you must have `npm` and `nodejs` installed. On Ubuntu and possibly other
+systems, there is an issue with `nodejs` being run as `node`, which is fixed by
+symlinking `/usr/bin/nodejs` to `/usr/bin/node`.
+
 ### Tools used:
 * Node.js with express for the web server
 * Gulp for building the client app and initiating Express
